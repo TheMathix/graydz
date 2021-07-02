@@ -1,17 +1,19 @@
 import React from 'react';
 import '../../App.css'
 import Footer from '../items/Footer'
-import {AccountBox} from '../accountBox/';
 import Navbar from '../items/Navbar';
+import Sidebar from '../Sidebar/Sidebar';
 
-function Login(){
+function AccountHome() {
   return (
     <>
       <Navbar />
-      <AccountBox />
+        <Sidebar>
+          
+        </Sidebar>
       <Footer />
     </>
   );
 }
 
-export default Login;
+export default AccountHome;

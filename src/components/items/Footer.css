@@ -5,6 +5,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: static;
+  bottom: 0;
+  right: 0;
+  left: 0;
 }
 
 .footer-subscription {
@@ -16,6 +20,7 @@
   margin-bottom: 24px;
   padding: 24px;
   color: #fff;
+
 }
 
 .footer-subscription > p{

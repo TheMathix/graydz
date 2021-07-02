@@ -1,31 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import { AppBar, Typography, Toolbar, Avatar } from '@material-ui/core';
-import {Link, useHistory} from 'react-router-dom';
+import {Link, useHistory, useLocation} from 'react-router-dom';
 import './Navbar.css';
 import {Button} from './Button';
 import { useDispatch } from 'react-redux';
-import * as actionType from '../constants/actionTypes';
 import decode from 'jwt-decode';
 
-/* let profile_btn = document.getElementById("dropbtn");
-if (profile_btn){
-  console.log("botrao");
 
-  profile_btn.addEventListener("mouseover", function( event ){
 
-    let li = document.getElementById("dropdown_conta");
-    if (li.style.display = "block"){
-      li.style.display = "none";
-      console.log("none");
-    }
-    else{
-      console.log("block");
-      li.style.display = "block";
-    }
-
-  }, false);
-}
- */
 function mouseover(){
   
   let li = document.getElementById("dropdown_conta");
@@ -47,9 +28,17 @@ function Navbar() {
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
 
+  const location = useLocation();
+
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
   const history = useHistory();
   const dispatch = useDispatch();
+  
+  const logout = () => {
+    dispatch({ type: 'LOGOUT'});  
+    history.push('/');
+    setUser(null);
+  };
 
   useEffect(() => {
     const token = user?.token;
@@ -59,7 +48,7 @@ function Navbar() {
       if(decodedToken.exp * 1000 < new Date().getTime()) logout();
     }
     setUser(JSON.parse(localStorage.getItem('profile')))
-  }, []);
+  }, [location]);
 
   const showButton = () => {
     if(window.innerWidth <= 960) {
@@ -67,12 +56,6 @@ function Navbar() {
     } else {
       setButton(true);
     }
-  };
-
-  const logout = () => {
-    dispatch({ type: 'LOGOUT'});  
-    history.push('/');
-    setUser(null);
   };
 
   window.addEventListener('resize', showButton);
@@ -111,18 +94,20 @@ function Navbar() {
           </ul>
               {user?.result ? (
                 
-                  <div id="dropbtn_div">
-                  <Button buttonStyle='btn--outline' id="dropbtn_" onMouseOver= {mouseover} onMouseOut={mouseover}>{user?.result.name}</Button>
-                  <div>
-                    <ul  id="dropdown_conta">
-                      <a href="#" onClick={logout} id="dropdown_cont" display="none">Logout</a>
-                    </ul>
-                    </div>
+                <div id="dropbtn_div">
+                  <Button buttonStyle='btn--outline' buttonSize='btn--profile' onClick= {mouseover}>{user?.result.name.split(" ")[0].charAt(0).toUpperCase() +user?.result.name.split(" ")[0].slice(1)}</Button>
+
+                  <div id="dropdown_conta" style={{display:"none", position: "fixed", width: "150px"}}>
+                  
+                    <Button  buttonStyle='btn--primary' buttonSize='btn--profile' onClick= {logout} >Logout</Button>
+                    <Button  buttonStyle='btn--primary' buttonSize='btn--profile' linkTo = 'accounthome'>Minha conta</Button>
+
                   </div>
+
+                </div>
                 
-                //
               ):(
-                <Button buttonStyle='btn--outline'>REGISTRE-SE</Button>
+                <Button buttonStyle='btn--outline' linkTo='sign-up'>REGISTRE-SE</Button>
               )}
         </div>
       </nav>

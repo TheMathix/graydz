@@ -8,12 +8,15 @@
   outline: none;
   border: none;
   cursor: pointer;
+  max-height: 70px;
+  
 }
 
 .btn--primary {
   background-color: var(--primary);
   color: #242424;
   border: 1px solid var(--primary);
+  transition: all 0.3s ease-out;
 }
 
 .btn--outline {
@@ -34,9 +37,23 @@
   font-size: 20px;
 }
 
-.btn--medium:hover, .btn--large:hover {
-  background: #fff;
-  color: #242424;
+
+.btn--profile {
+  font-size: 20px;
+  padding :12px 20px;
+  width: 175px;
+}
+
+.btn--primary:hover {
+  background: #151515;
+  color: #fff;
+  transition: all 0.3s ease-out;
+  transition: 250ms;
+}
+
+.btn--medium:hover, .btn--large:hover, .btn--profile:hover {
+  background: #242424;
+  color:   #fff;
   transition: all 0.3s ease-out;
   transition: 250ms;
 }

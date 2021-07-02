@@ -7,6 +7,7 @@ export const BoxContainer = styled.div`
   align-items: center;
   margin-top: 10px;
   z-index: 7;
+  position: static;
 `;
 
 export const FormContainer = styled.form `
@@ -29,6 +30,32 @@ export const BoldLink = styled.a`
   font-weight: 500;
   text-decoration: none;
 
+`;
+
+export const NameInput = styled.input `
+  text-transform: capitalize;
+  z-index: 3;
+  height: 42px;
+  width: 100%;
+  outline: none;
+  border: 1px solid rgba(15, 15, 15, 0.03);
+  padding: 0px 10px;
+  border-bottom: 1.4px solid transparent;
+  transition: all 200ms ease-in-out;
+  &:placeholder{
+    color: rgba(15, 15, 15, 1);
+
+  }
+
+  &:not(:last-of-type){
+    border-bottom: 1.5px solid rgba(15, 15, 15, 0.28);
+  }
+
+  &:focus{
+    outline:none;
+    border-bottom: 2px solid rgba(15, 15, 15)
+  }
+  z-index: 7;
 `;
 
 export const Input = styled.input `
