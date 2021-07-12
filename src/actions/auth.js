@@ -21,8 +21,7 @@ export const signup = (formData, router) => async (dispatch) => {
 
     router.push('/');
   } catch (error) {
-    console.log("foi aqui")
-    console.log(formData)
+
     console.log(error);
   }
 };

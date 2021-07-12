@@ -39,6 +39,16 @@ const DropdownLink = styled(Link)`
         cursor: pointer;
     }
 `;
+
+function class_click(name_class) {
+
+    if ((name_class !== null) && (name_class)){
+        localStorage.setItem('class', JSON.stringify(name_class))
+        console.log("escrevendo outra class "+name_class)   
+    }
+    
+}
+
 const Submenu = ({ item }) => {
 
     const [subnav, setSubnav] = useState(false)
@@ -62,7 +72,7 @@ const Submenu = ({ item }) => {
             </SidebarLink>           
             {subnav && item.subNav.map((item, index) => {
                 return (
-                    <DropdownLink to= {item.path} key={index}>
+                    <DropdownLink to= {{pathname: '/class', state: {class_name: item.title}}} key={index} onClick={() => {class_click(item.title)}} >
                         {item.icon}
                         <SidebarLabel>{item.title}</SidebarLabel>
                     </DropdownLink>

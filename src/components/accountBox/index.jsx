@@ -13,17 +13,6 @@ import useStyles from './styles';
 import {  useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-/* const AppWrapper = () => {
-  const store= createStore(rootReducer);
-
-  return (
-    <Provider store={store}>
-      <App /> 
-    </Provider>
-  )
-};
- */
-
 const BoxContainer = styled.div`
   width: 280px;
   min-height: 550px;
